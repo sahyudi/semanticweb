@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'tumbuhkembali.my.id',
-	'username' => 'n1601127_semanticweb',
-	'password' => '6RBqi!V%enuZ',
-	'database' => 'n1601127_semanticweb',
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => '',
+	'database' => 'db_kompetitif',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
