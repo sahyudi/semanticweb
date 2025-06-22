@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : DB Local
+ Source Server         : DB LOCAL
  Source Server Type    : MySQL
- Source Server Version : 50733
+ Source Server Version : 80030
  Source Host           : localhost:3306
  Source Schema         : db_kompetitif
 
  Target Server Type    : MySQL
- Target Server Version : 50733
+ Target Server Version : 80030
  File Encoding         : 65001
 
- Date: 27/05/2025 07:51:54
+ Date: 22/06/2025 22:21:47
 */
 
 SET NAMES utf8mb4;
@@ -22,7 +22,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `sertipikat_tanah`;
 CREATE TABLE `sertipikat_tanah`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `nib` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `pemilik` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `kelurahan` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
@@ -34,8 +34,8 @@ CREATE TABLE `sertipikat_tanah`  (
   `tgl_terbit` date NULL DEFAULT NULL,
   `tgl_jth_tempo` date NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `nib`(`nib`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 201 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+  UNIQUE INDEX `nib`(`nib` ASC) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 201 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sertipikat_tanah
@@ -240,5 +240,22 @@ INSERT INTO `sertipikat_tanah` VALUES (197, '8541-411691-8774', 'Kiki Yulianti',
 INSERT INTO `sertipikat_tanah` VALUES (198, '9469-332703-6343', 'Dewi Prasetyo', 'Sungai Jodoh', 'Batu Ampar', 'Batam', 'Jl. Pelita No. 594', 394, 'HGB', '2013-03-15', '2025-01-16');
 INSERT INTO `sertipikat_tanah` VALUES (199, '6344-695147-6358', 'Hadi Wibowo', 'Bukit Tempayan', 'Batu Aji', 'Batam', 'Jl. Mawar No. 960', 488, 'HGU', '2022-06-07', NULL);
 INSERT INTO `sertipikat_tanah` VALUES (200, '9415-333118-9200', 'Dewi Haryanto', 'Kampung Seraya', 'Batu Ampar', 'Batam', 'Jl. Melati No. 682', 804, 'HGU', '2010-10-17', '2039-12-05');
+
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user`  (
+  `id` int NOT NULL,
+  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nama` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `role` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
 
 SET FOREIGN_KEY_CHECKS = 1;
