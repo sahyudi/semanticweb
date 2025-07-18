@@ -69,14 +69,34 @@
 </head>
 
 <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Sertipikat Tanah</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active"><a class="nav-link" href="#">Beranda</a></li>
+                <li class="nav-item"><a class="nav-link" href="<?= base_url('logout') ?>">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="main-content">
         <h1 class="text-center mb-2">DATA SERTIPIKAT TANAH</h1>
-        <h5 class="text-center mb-3 font-weight-normal" style="color:#666;">By:</h5>
-        <ul class="list-unstyled text-center mb-4" style="font-size:1.1rem;">
-            <li>Ditya Endah Utari</li>
-            <li>Muhamad Sahyudi</li>
-            <li>Febriend Roni Sianipar</li>
-        </ul>
+        <!-- <h5 class="text-center mb-3 font-weight-normal" style="color:#666;">By:</h5> -->
+        <p class="list-unstyled text-center mb-4" style="font-size:1.1rem;">
+            Ditya Endah Utari, Muhamad Sahyudi, Febriend Roni Sianipar
+        </p>
+        <?= $this->session->flashdata('message'); ?>
+        <?php if ($this->session->userdata('role') == 'ADMIN') { ?>
+            <div class="mb-3 text-right">
+                <a href="<?= site_url('home/add') ?>" class="btn btn-success">
+                    <i class="fa fa-plus"></i> Tambah Data
+                </a>
+            </div>
+        <?php } ?>
         <div class="table-responsive">
             <table id="example" class="table table-striped table-bordered" style="width:100%">
                 <thead>
@@ -92,6 +112,7 @@
                         <th>Status</th>
                         <th>Tanggal Terbit</th>
                         <th>Tanggal Jatuh Tempo</th>
+                        <th>Aksi</th>
                     </tr>
                     <tr>
                         <th></th>
@@ -105,6 +126,7 @@
                         <th><input type="text" class="form-control column-filter" placeholder="Cari Status"></th>
                         <th><input type="text" class="form-control column-filter" placeholder="Cari Tanggal Terbit"></th>
                         <th><input type="text" class="form-control column-filter" placeholder="Cari Tanggal Jatuh Tempo"></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -123,6 +145,19 @@
                         echo "<td>" . htmlspecialchars($value->status) . "</td>";
                         echo "<td>" . htmlspecialchars($value->tgl_terbit) . "</td>";
                         echo "<td>" . htmlspecialchars($value->tgl_jth_tempo) . "</td>";
+                        if ($this->session->userdata('role') == 'ADMIN') {
+                            echo "<td class='text-center'>
+                                <a href='" . site_url('home/update/' . $value->id) . "' class='btn btn-sm btn-primary'>
+                                    <i class='fa fa-edit'></i> Edit
+                                </a>
+                                |
+                                <a href='" . site_url('home/delete/' . $value->id) . "' class='btn btn-sm btn-danger'>
+                                    <i class='fa fa-trash'></i> Hapus
+                                </a>
+                              </td>";
+                        } else {
+                            echo "<td class='text-center'>&nbsp;</td>";
+                        }
                         echo "</tr>";
                     }
                     ?>
@@ -134,10 +169,11 @@
         &copy; <?= date('Y') ?> Praktikum Pemograman Kompetitif &mdash; Ditya Endah Utari, Muhamad Sahyudi, Febriend Roni Sianipar
     </footer>
 
-    <!-- jQuery, Bootstrap 4 JS, DataTables JS -->
+    <!-- jQuery, Bootstrap 4 JS, DataTables JS, FontAwesome -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script>
         $(document).ready(function() {
             var table = $('#example').DataTable({
@@ -173,10 +209,14 @@
                     }, // Tanggal Terbit
                     {
                         width: "170px"
-                    } // Tanggal Jatuh Tempo
+                    }, // Tanggal Jatuh Tempo
+                    {
+                        width: "120px"
+                    } // Aksi
                 ],
                 autoWidth: false,
                 scrollX: true,
+                ordering: false,
                 initComplete: function() {
                     this.api().columns().every(function() {
                         var column = this;

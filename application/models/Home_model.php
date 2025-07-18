@@ -22,4 +22,13 @@ class Home_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
+    function get_data_detail($id)
+    {
+        $this->db->select('*');
+        $this->db->from($this->sertipikat_tanah);
+        $this->db->where('id', $id);
+        $query = $this->db->get();
+        return $query->row();
+    }
 }

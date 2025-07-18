@@ -11,7 +11,7 @@
  Target Server Version : 80030
  File Encoding         : 65001
 
- Date: 22/06/2025 22:21:47
+ Date: 27/06/2025 06:21:22
 */
 
 SET NAMES utf8mb4;
@@ -40,7 +40,7 @@ CREATE TABLE `sertipikat_tanah`  (
 -- ----------------------------
 -- Records of sertipikat_tanah
 -- ----------------------------
-INSERT INTO `sertipikat_tanah` VALUES (1, '1990-357215-7497', 'Hadi Nugroho', 'Bengkong Indah', 'Bengkong', 'Batam', 'Jl. Garuda No. 294', 658, 'HGB', '2020-01-27', '2037-12-11');
+INSERT INTO `sertipikat_tanah` VALUES (1, '1990-357215-7497', 'Muhamad Sahyudi', 'Bengkong Indah', 'Bengkong', 'Batam', 'Jl. Garuda No. 294', 658, 'HGB', '2020-01-27', '2037-12-11');
 INSERT INTO `sertipikat_tanah` VALUES (2, '3240-291192-8286', 'Eka Yulianti', 'Tanjung Riau', 'Sekupang', 'Batam', 'Jl. Pelita No. 468', 98, 'HGU', '2020-10-15', NULL);
 INSERT INTO `sertipikat_tanah` VALUES (3, '3887-604857-1334', 'Budi Lestari', 'Tanjung Pinggir', 'Sekupang', 'Batam', 'Jl. Rajawali No. 875', 173, 'HGB', '2022-09-04', NULL);
 INSERT INTO `sertipikat_tanah` VALUES (4, '5416-674451-7237', 'Hadi Saputra', 'Bukit Tempayan', 'Batu Aji', 'Batam', 'Jl. Merpati No. 695', 111, 'SHM', '2014-12-19', '2031-11-15');
@@ -242,20 +242,23 @@ INSERT INTO `sertipikat_tanah` VALUES (199, '6344-695147-6358', 'Hadi Wibowo', '
 INSERT INTO `sertipikat_tanah` VALUES (200, '9415-333118-9200', 'Dewi Haryanto', 'Kampung Seraya', 'Batu Ampar', 'Batam', 'Jl. Melati No. 682', 804, 'HGU', '2010-10-17', '2039-12-05');
 
 -- ----------------------------
--- Table structure for user
+-- Table structure for users
 -- ----------------------------
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user`  (
-  `id` int NOT NULL,
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users`  (
+  `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `nama` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `role` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of user
+-- Records of users
 -- ----------------------------
+INSERT INTO `users` VALUES (1, 'sahyudi', 'Muhamad Sahyudi', '$2y$10$szxvQDQbu8DPJeYR5IQvDuJMXNUnN4/uqxRUpd3VxnhF47UN4PZhO', 'ADMIN');
+INSERT INTO `users` VALUES (2, 'user01', 'User', '$2y$10$szxvQDQbu8DPJeYR5IQvDuJMXNUnN4/uqxRUpd3VxnhF47UN4PZhO', 'USER');
+INSERT INTO `users` VALUES (3, 'msahyudi', 'M Sahyudi', '$2y$10$gZPyE033Wu5PoWJqASRf1eYkwobtloBNHyCIj7Vl/pGJYwyVPUVem', 'USER');
 
 SET FOREIGN_KEY_CHECKS = 1;
